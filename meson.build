@@ -39,9 +39,9 @@ else
         '-D_FORTIFY_SOURCE=2',
         '-Wl,dynamicbase',
         '-Wsign-conversion',
-#        '-mmitigate-rop',
+#       '-mmitigate-rop',
         '-fstack-protector-strong',
-        '-fcf-protection',
+#       '-fcf-protection',
     ]
 endif
 
