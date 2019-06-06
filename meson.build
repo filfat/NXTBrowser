@@ -23,10 +23,7 @@ cpp_args = [
     '-Wno-unused-variable',
     '-Wno-unused-value'
 ]
-link_args = [
-    'c_std=c11',
-    'cpp_std=c++17'
-]
+link_args = []
 dep = [
     dependency('tidy'),
     dependency('curl'),
@@ -42,13 +39,18 @@ else
         '-D_FORTIFY_SOURCE=2',
         '-Wl,dynamicbase',
         '-Wsign-conversion',
-        '-mmitigate-rop',
+#        '-mmitigate-rop',
         '-fstack-protector-strong',
         '-fcf-protection',
     ]
 endif
 
 if build_machine.system() == 'darwin'
+    link_args += [
+        'c_std=c11',
+        'cpp_std=c++17'
+    ]
+
     cpp_args += ['-D__DARWIN__']
     
     dep_libui = dependency('libui', required: false)
