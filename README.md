@@ -6,8 +6,8 @@ Don't use this.. like really.
 
 ![scr](https://i.imgur.com/0cFrkUB.png)
 
+## Building
+```$ todo```
+
 ## Dependencies
 See `Brewfile` (`$ brew bundle`).
-
-## License
-The "Anyone but Richard M Stallman" License. We're supporters of actual freedom, not communism.
