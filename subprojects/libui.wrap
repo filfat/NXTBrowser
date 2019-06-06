@@ -1,0 +1,5 @@
+[wrap-git]
+directory = libui
+
+url = https://github.com/andlabs/libui.git
+revision = head

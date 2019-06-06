@@ -67,6 +67,8 @@ int render(void*) {
     #ifndef __SWITCH__
     SDL_PumpEvents();
     #endif
+
+    return 0;
 }
 
 bool running = true;

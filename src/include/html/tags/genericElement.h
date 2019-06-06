@@ -20,8 +20,9 @@ namespace browser {
                 GenericElement () {
                     this->properties = this->defaultProperties;
                 }
-                ~GenericElement () {
-                    //delete &this->properties, &this->defaultProperties;
+                virtual ~GenericElement () {
+                    delete &this->properties;
+                    delete &this->defaultProperties;
                 }
 
                 const browser::elements::properties getDefaultProperties () {
@@ -54,12 +55,12 @@ namespace browser {
                     //printf("DOM->Parser->GenericElement->height: " + std::to_string(height));
                     //printf("DOM->Parser->GenericElement->width: " + std::to_string(width));
 
-                    return (browser::elements::renderQueueItem){
-                        size: {
-                            height: height * DEVICE.scaling,
-                            width: width * DEVICE.scaling
+                    return (browser::elements::renderQueueItem) {
+                        .size = {
+                            .height = height * DEVICE.scaling,
+                            .width = width * DEVICE.scaling
                         },
-                        properties: this->properties
+                        .properties = this->properties
                     };
                 }
         };
