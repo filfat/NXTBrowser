@@ -3,6 +3,10 @@ language: cpp
 
 compiler:
   - clang
+
+cache:
+  directories:
+    - $HOME/Library/Caches/Homebrew
   
 before_install:
   - brew update
@@ -12,3 +16,5 @@ script:
   - meson builddir --buildtype release
   - ninja -C builddir
   
+before_cache:
+  - brew cleanup
