@@ -3,10 +3,12 @@ language: cpp
 
 compiler:
   - clang
-
+  
 before_install:
-  - brew update && brew bundle
+  - brew update
+  - brew bundle
 
 script:
-  - cd src
-  - make -f Makefile.macos clean && make macos
+  - meson builddir --buildtype release
+  - ninja -C builddir
+  
