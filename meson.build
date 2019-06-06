@@ -38,20 +38,13 @@ elif build_machine.system() == 'windows'
 endif
 
 if build_machine.system() == 'darwin'
-  # TODO: Metal for darwin?
-  dep_glew = dependency('glew')
-  dep_glfw3 = dependency('glfw3')
+  dep_sdl2 = dependency('sdl2')
 
   cpp_args += ['-D__USE_OPENGL__']
   link_args += ['-lstdc++fs']
-  dep += [dep_glew, dep_glfw3, dep_usb, dep_lua]
+  dep += [dep_sdl2]
 elif build_machine.system() == 'linux'
-  dep_glew = dependency('glew')
-  dep_glfw3 = dependency('glfw3')
-
-  cpp_args += ['-D__USE_OPENGL__']
-  link_args += ['-lstdc++fs']
-  dep += [dep_glew, dep_glfw3, dep_usb, dep_lua]
+  # TODO
 elif build_machine.system() == 'windows'
   # TODO
 endif
