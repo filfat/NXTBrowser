@@ -33,7 +33,7 @@ namespace browser {
                         return browser::elements::GenericElement::getRenderQueueItem(_surface);
                     
                     // Update maxwidth & maxheight
-                    #ifndef ___NATIVE_GUI___
+                    #ifndef __NATIVE_GUI__
                         if(this->properties.maxWidth <= 0)
                             this->properties.maxWidth = _surface->w;
                         if(this->properties.maxHeight <= 0)
@@ -45,7 +45,7 @@ namespace browser {
                         this->properties.padding.left + this->properties.padding.right) * DEVICE.scaling;
 
                     // Set font style
-                    #ifndef ___NATIVE_GUI___
+                    #ifndef __NATIVE_GUI__
                         /*switch (this->properties.fontStyle) {
                             case Bold:
                                 #ifdef __SWITCH__
@@ -77,7 +77,7 @@ namespace browser {
                         // TODO: Separate this into GUI lib
                         SDL_Surface *surface = TTF_RenderUTF8_Blended_Wrapped(this->font, this->content.c_str(), {0, 0, 0, 0}, width);
 
-                        #ifndef ___NATIVE_GUI___
+                        #ifndef __NATIVE_GUI__
                             if (this->properties.height <= 0)
                                 this->properties.height = surface->h;
                             if (this->properties.width <= 0)

@@ -73,7 +73,7 @@ namespace browser {
 
                 position += renderItem.properties.margin.top;
 
-                #ifndef ___NATIVE_GUI___
+                #ifndef __NATIVE_GUI__
                     sdl_helper::renderText(text, _browser_surface,
                         {renderItem.properties.margin.left + renderItem.properties.padding.left,
                         position, 0, 0}, renderItem.properties.width, tag->getFont(), {0, 0, 0, 255});

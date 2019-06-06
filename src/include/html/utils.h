@@ -5,7 +5,7 @@
 
 #include "../main.h"
 
-#ifndef ___NATIVE_GUI___
+#ifndef __NATIVE_GUI__
     struct font {
         TTF_Font* font;
         std::string fontPath;
@@ -25,7 +25,7 @@ static std::vector<font> fontCache;
 static std::vector<fontSurface> fontSurfaceCache;
 namespace browser {
     namespace utils {
-        #ifndef ___NATIVE_GUI___
+        #ifndef __NATIVE_GUI__
             TTF_Font* get_font_from_cache(std::string path, int size) {
                 /*if ((int)fontCache.size() > 5) {
                     TTF_CloseFont(fontCache.begin()->font);

@@ -21,8 +21,8 @@
 #include "stack/stack.h"
 #include "dom/dom.h"
 
-#ifdef ___NATIVE_GUI___
-    #include "ui/mainWindow.h"
+#ifdef __NATIVE_GUI__
+    #include "gui/ui/mainWindow.h"
 #endif
 
 unsigned int currentTick = 0, lastTick = 0, delta = 0;
@@ -60,12 +60,12 @@ int render(void*) {
     DOM->doTick(STACK, GUI);
     GUI->doTick();
 
-    #ifdef ___NATIVE_GUI___
+    #ifndef __NATIVE_GUI__
         return 1;
     #endif
 
     #ifndef __SWITCH__
-    SDL_PumpEvents();
+        SDL_PumpEvents();
     #endif
 
     return 0;
@@ -81,14 +81,14 @@ int main(int argc, char* argv[]) {
     GUI = new browser::GUI();
     printf("APP->Init done\n");
 
-    #ifdef ___NATIVE_GUI___
+    #ifdef __NATIVE_GUI__
         MainWindow *window = new MainWindow();
     #endif
 
     if (argc > 1)
         STACK->setSource(argv[1], true);
     
-    #ifndef ___NATIVE_GUI___
+    #ifndef __NATIVE_GUI__
         #ifdef __SWITCH__
             while(appletMainLoop() && running) {
         #else

@@ -1,4 +1,5 @@
 #pragma once
+#pragma clang diagnostic ignored "-Wc99-extensions"
 
 /* TODO: move into a config.h file */
 
@@ -8,7 +9,7 @@
 
 // Feature-toggles
 #ifdef __LINUX__
-    #define ___NATIVE_GUI___ true
+    #define __NATIVE_GUI__ true
 #endif
 
 #include <iostream>

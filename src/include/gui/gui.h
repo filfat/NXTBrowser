@@ -2,7 +2,7 @@
 #include <iostream>
 
 #include "../main.h"
-#ifdef ___NATIVE_GUI___
+#ifdef __NATIVE_GUI__
     #include "ui/mainWindow.h"
 #endif
 

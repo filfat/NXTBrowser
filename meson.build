@@ -5,23 +5,24 @@ project('NXTBrowser', ['c', 'cpp'],
         'warning_level=3',
         'b_pch=false',
 
-        'c_std=c99',
-        'cpp_std=c++11'
+        'c_std=c11',
+        'cpp_std=c++17'
     ]
 )
 
 security_args = [
     '-fexceptions',
     '-Wfatal-errors',
-    '-Werror'
+#   '-Werror'
 ]
 cpp_args = [
     '-Wall',
     '-Wno-conversion-null',
     '-Wno-int-to-pointer-cast',
     '-Wno-unused-result',
+    '-Wno-unused-parameter',
     '-Wno-unused-variable',
-    '-Wno-unused-value'
+    '-Wno-unused-value',
 ]
 link_args = []
 dep = [
@@ -46,12 +47,7 @@ else
 endif
 
 if build_machine.system() == 'darwin'
-    link_args += [
-        'c_std=c11',
-        'cpp_std=c++17'
-    ]
-
-    cpp_args += ['-D__DARWIN__']
+    cpp_args += ['-D__DARWIN__', '-D__NATIVE_GUI__']
     
     dep_libui = dependency('libui', required: false)
     if not dep_libui.found()
@@ -63,14 +59,6 @@ elif build_machine.system() == 'linux'
     cpp_args += ['-D__LINUX__']
 elif build_machine.system() == 'windows'
     cpp_args += ['-D__WIN32__']
-endif
-
-if build_machine.system() == 'darwin'
-    link_args += ['-lstdc++fs']
-elif build_machine.system() == 'linux'
-    # TODO
-elif build_machine.system() == 'windows'
-    # TODO
 endif
 
 includes = [include_directories('src/include')]

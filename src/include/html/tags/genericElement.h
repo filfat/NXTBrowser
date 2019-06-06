@@ -21,8 +21,8 @@ namespace browser {
                     this->properties = this->defaultProperties;
                 }
                 virtual ~GenericElement () {
-                    delete &this->properties;
-                    delete &this->defaultProperties;
+                    //delete &this->properties;
+                    // delete &this->defaultProperties;
                 }
 
                 const browser::elements::properties getDefaultProperties () {
@@ -34,7 +34,7 @@ namespace browser {
                 virtual TTF_Font* getFont() { return this->font; };
                 virtual browser::elements::renderQueueItem getRenderQueueItem (SDL_Surface* _surface) {
                     // Update maxwidth & maxheight
-                    #ifndef ___NATIVE_GUI___
+                    #ifndef __NATIVE_GUI__
                         if(this->properties.maxWidth <= 0)
                             this->properties.maxWidth = _surface->w;
                         if(this->properties.maxHeight <= 0)
@@ -57,8 +57,8 @@ namespace browser {
 
                     return (browser::elements::renderQueueItem) {
                         .size = {
-                            .height = height * DEVICE.scaling,
-                            .width = width * DEVICE.scaling
+                            height = height * DEVICE.scaling,
+                            width = width * DEVICE.scaling
                         },
                         .properties = this->properties
                     };

@@ -2,7 +2,7 @@
 
 namespace browser {
     GUI::GUI() {
-        #ifndef ___NATIVE_GUI___
+        #ifndef __NATIVE_GUI__
             // sdl_helper::init();
         #else
             uiInitOptions options;
@@ -11,7 +11,7 @@ namespace browser {
         #endif
     }
     GUI::~GUI() {
-        #ifndef ___NATIVE_GUI___
+        #ifndef __NATIVE_GUI__
             // sdl_helper::exit();
         #else
             uiUninit();
