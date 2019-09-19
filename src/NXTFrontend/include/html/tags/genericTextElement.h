@@ -51,7 +51,7 @@ namespace browser {
                                 #ifdef __SWITCH__
                                     this->font = browser::utils::get_font_from_cache("romfs:/fonts/NintendoStandard.ttf", (int)this->properties.fontSize * DEVICE.scaling);
                                     TTF_SetFontStyle(this->font, TTF_STYLE_BOLD);
-                                #elif __MACOS__
+                                #elif __DARWIN__
                                     this->font = browser::utils::get_font_from_cache("/Library/Fonts/Arial Bold.ttf", (int)this->properties.fontSize * DEVICE.scaling);
                                 #else
                                     this->font = browser::utils::get_font_from_cache("../../resources/fonts/NintendoStandard.ttf", (int)this->properties.fontSize * DEVICE.scaling);
@@ -62,7 +62,7 @@ namespace browser {
                             default:
                                 #ifdef __SWITCH__
                                     this->font = browser::utils::get_font_from_cache("romfs:/fonts/NintendoStandard.ttf", (int)this->properties.fontSize * DEVICE.scaling);
-                                #elif __MACOS__
+                                #elif __DARWIN__
                                     this->font = browser::utils::get_font_from_cache("/Library/Fonts/Arial.ttf", (int)this->properties.fontSize * DEVICE.scaling);
                                 #else
                                     this->font = browser::utils::get_font_from_cache("../../resources/fonts/NintendoStandard.ttf", (int)this->properties.fontSize * DEVICE.scaling);

@@ -1,3 +1,4 @@
+brew "pkg-config"
 brew "meson"
 brew "sdl2"
 brew "sdl2_image"

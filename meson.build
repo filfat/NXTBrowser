@@ -13,7 +13,7 @@ project('NXTBrowser', ['c', 'cpp'],
 security_args = [
     '-fexceptions',
     '-Wfatal-errors',
-#   '-Werror'
+    '-Werror'
 ]
 cpp_args = [
     '-Wall',
@@ -47,7 +47,7 @@ else
 endif
 
 if build_machine.system() == 'darwin'
-    cpp_args += ['-D__DARWIN__', '-D__NATIVE_GUI__']
+    cpp_args += ['-D__DARWIN__']
     
     dep_libui = dependency('libui', required: false)
     if not dep_libui.found()
