@@ -4,9 +4,7 @@
 #include <iostream>
 #include <functional>
 
-#ifdef __SWITCH__
-    #include <switch.h>
-#elif __MACOS__
+#ifdef __DARWIN__
     #include <sys/time.h>
     #include <sys/resource.h>
 #elif __LINUX__
@@ -20,10 +18,7 @@
 #include "net/net.h"
 #include "stack/stack.h"
 #include "dom/dom.h"
-
-#ifdef __NATIVE_GUI__
-    #include "gui/ui/mainWindow.h"
-#endif
+#include "gui/ui/mainWindow.h"
 
 unsigned int currentTick = 0, lastTick = 0, delta = 0;
 
@@ -36,7 +31,7 @@ browser::GUI *GUI;
 device_aspect DEVICE;
 
 long getMemoryUsage() {
-    #ifdef __MACOS__
+    #ifdef __DARWIN__
         struct rusage usage;
         if(0 == getrusage(RUSAGE_SELF, &usage))
             return usage.ru_maxrss/1000/1000;
@@ -60,15 +55,7 @@ int render(void*) {
     DOM->doTick(STACK, GUI);
     GUI->doTick();
 
-    #ifndef __NATIVE_GUI__
-        return 1;
-    #endif
-
-    #ifndef __SWITCH__
-        SDL_PumpEvents();
-    #endif
-
-    return 0;
+    return 1;
 }
 
 bool running = true;
@@ -81,31 +68,13 @@ int main(int argc, char* argv[]) {
     GUI = new browser::GUI();
     printf("APP->Init done\n");
 
-    #ifdef __NATIVE_GUI__
-        MainWindow *window = new MainWindow();
-    #endif
+    MainWindow *window = new MainWindow();
 
     if (argc > 1)
         STACK->setSource(argv[1], true);
     
-    #ifndef __NATIVE_GUI__
-        #ifdef __SWITCH__
-            while(appletMainLoop() && running) {
-        #else
-            while(running) {
-        #endif
-                currentTick = SDL_GetTicks();
-                delta = currentTick - lastTick;
-                    
-                render(NULL);
-
-                SDL_Delay(10);
-                lastTick = currentTick;
-            };
-    #else
-        uiTimer(1000, &render, NULL);
-        uiMain();
-    #endif
+    uiTimer(1000, &render, NULL);
+    uiMain();
 
     delete GUI, DOM, STACK, NET, INPUT;
     return 0;

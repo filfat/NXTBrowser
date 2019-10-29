@@ -13,7 +13,7 @@ project('NXTBrowser', ['c', 'cpp'],
 security_args = [
     '-fexceptions',
     '-Wfatal-errors',
-    '-Werror'
+#   '-Werror'
 ]
 cpp_args = [
     '-Wall',
@@ -27,7 +27,7 @@ cpp_args = [
 link_args = []
 dep = [
     dependency('tidy'),
-    dependency('libcurl'),
+    dependency('curl'),
     dependency('sdl2'),
     dependency('sdl2_image'),
     dependency('sdl2_ttf')
@@ -47,7 +47,7 @@ else
 endif
 
 if build_machine.system() == 'darwin'
-    cpp_args += ['-D__DARWIN__']
+    cpp_args += ['-D__DARWIN__', '-D__NATIVE_GUI__']
     
     dep_libui = dependency('libui', required: false)
     if not dep_libui.found()
